@@ -1,14 +1,14 @@
-// #pragma once
-// #include "parser/SQLParserVisitor.h"
-// #include "parser/ast/ast_node.h"
+#pragma once
+#include "parser/PlutoBaseVisitor.h"
+#include "parser/ast/ast_node.h"
 
-// namespace sql {
+namespace pluto {
 
-// class ASTBuilder : public SQLParserVisitor {
-//  public:
-//   ASTBuilder() = default;
-//   AstNodePtr parse(const std::string& str);
-//   AstNodePtr typeVisit(antlr4::ParserRuleContext* ctx);
-// };
+class ASTBuilder : public pluto::PlutoBaseVisitor {
+ public:
+  ASTBuilder() = default;
+  AstNodePtr parse(const std::string& str);
+  AstNodePtr typeVisit(antlr4::ParserRuleContext* ctx);
+};
 
-// }  // namespace sql
+}  // namespace pluto

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "parser/ast/ast_node.h"
-namespace sql {
+namespace pluto {
 
 struct FunctionCall : public AstNode {
   FunctionCall();
@@ -14,4 +14,4 @@ struct FunctionCall : public AstNode {
   std::vector<AstNodePtr> arguments_;
 };
 
-}  // namespace sql
+}  // namespace pluto

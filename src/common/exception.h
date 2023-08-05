@@ -4,7 +4,7 @@
 
 #include "fmt/format.h"
 
-namespace sql {
+namespace pluto {
 
 class Exception : public std::exception {
  public:
@@ -38,7 +38,7 @@ class Exception : public std::exception {
   Exception* _pNested{nullptr};
 };
 
-}  // namespace sql
+}  // namespace pluto
 
 #define ThrowException(...) \
-  (throw sql::Exception(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__))
+  (throw pluto::Exception(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__))

@@ -2,7 +2,7 @@
 #include <memory>
 #include <string>
 
-namespace sql {
+namespace pluto {
 
 struct AstNode;
 
@@ -28,4 +28,4 @@ struct AstNode {
   AstNodeType ntype_;
 };
 
-}  // namespace sql
+}  // namespace pluto

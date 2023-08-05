@@ -10,7 +10,7 @@
 
 #include "common/noncopyable.h"
 
-namespace sql {
+namespace pluto {
 class JITModuleMemoryManager;
 class JITSymbolResolver;
 class JITCompiler;
@@ -68,4 +68,4 @@ class SQLJit : public noncopyable {
   mutable std::mutex jit_lock;
 };
 
-}  // namespace sql
+}  // namespace pluto

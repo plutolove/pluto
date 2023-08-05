@@ -17,6 +17,10 @@ namespace pluto {
 class  PlutoBaseVisitor : public PlutoVisitor {
 public:
 
+  virtual std::any visitFunction_list(PlutoParser::Function_listContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitFuncdef(PlutoParser::FuncdefContext *ctx) override {
     return visitChildren(ctx);
   }

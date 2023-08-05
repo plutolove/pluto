@@ -1,11 +1,21 @@
 grammar Pluto;
 
-funcdef: DEF func_name=Identifier parameters block;
+function_list
+    : funcdef+
+    ;
+
+funcdef
+    : DEF func_name=Identifier parameters block
+    ;
 
 
-parameters: '(' args+=Identifier ')';
+parameters
+    : '(' args+=Identifier ')'
+    ;
 
-block: '{' blockItemList return_stmt? '}'; 
+block
+    : '{' blockItemList return_stmt? '}'
+    ; 
 
 blockItemList
     :   blockItem

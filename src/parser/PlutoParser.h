@@ -22,11 +22,11 @@ public:
   };
 
   enum {
-    RuleFuncdef = 0, RuleParameters = 1, RuleBlock = 2, RuleBlockItemList = 3, 
-    RuleBlockItem = 4, RuleReturn_stmt = 5, RuleExpressionStatement = 6, 
-    RuleExpression = 7, RuleValueExpression = 8, RulePrimaryExpression = 9, 
-    RuleConstant = 10, RuleIdentifier_with_dim = 11, RuleDim_value = 12, 
-    RuleConstant_vector = 13
+    RuleFunction_list = 0, RuleFuncdef = 1, RuleParameters = 2, RuleBlock = 3, 
+    RuleBlockItemList = 4, RuleBlockItem = 5, RuleReturn_stmt = 6, RuleExpressionStatement = 7, 
+    RuleExpression = 8, RuleValueExpression = 9, RulePrimaryExpression = 10, 
+    RuleConstant = 11, RuleIdentifier_with_dim = 12, RuleDim_value = 13, 
+    RuleConstant_vector = 14
   };
 
   explicit PlutoParser(antlr4::TokenStream *input);
@@ -46,6 +46,7 @@ public:
   antlr4::atn::SerializedATNView getSerializedATN() const override;
 
 
+  class Function_listContext;
   class FuncdefContext;
   class ParametersContext;
   class BlockContext;
@@ -60,6 +61,20 @@ public:
   class Identifier_with_dimContext;
   class Dim_valueContext;
   class Constant_vectorContext; 
+
+  class  Function_listContext : public antlr4::ParserRuleContext {
+  public:
+    Function_listContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<FuncdefContext *> funcdef();
+    FuncdefContext* funcdef(size_t i);
+
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Function_listContext* function_list();
 
   class  FuncdefContext : public antlr4::ParserRuleContext {
   public:

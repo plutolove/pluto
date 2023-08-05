@@ -27,6 +27,6 @@ int main(int argc, char** argvs) {
   std::cout << "flags: " << absl::GetFlag(FLAGS_conf) << std::endl;
   INFO("test {}", "sdfgsdfg");
   WARN("sdfgsdfgsdfg");
-  auto& jit = sql::SQLJit::getInstance();
+  auto& jit = pluto::SQLJit::getInstance();
   return 0;
 }

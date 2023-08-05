@@ -32,7 +32,7 @@
 #include "common/exception.h"
 #include "fmt/format.h"
 
-namespace sql {
+namespace pluto {
 
 size_t GetPageSize() { return sysconf(_SC_PAGESIZE); }
 
@@ -457,4 +457,4 @@ std::unique_ptr<llvm::TargetMachine> SQLJit::getTargetMachine() {
   return std::unique_ptr<llvm::TargetMachine>(target_machine);
 }
 
-}  // namespace sql
+}  // namespace pluto

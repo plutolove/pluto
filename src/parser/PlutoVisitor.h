@@ -20,6 +20,8 @@ public:
   /**
    * Visit parse trees produced by PlutoParser.
    */
+    virtual std::any visitFunction_list(PlutoParser::Function_listContext *context) = 0;
+
     virtual std::any visitFuncdef(PlutoParser::FuncdefContext *context) = 0;
 
     virtual std::any visitParameters(PlutoParser::ParametersContext *context) = 0;

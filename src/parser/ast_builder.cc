@@ -1,22 +1,23 @@
-// #include "parser/ast_builder.h"
+#include "parser/ast_builder.h"
 
-// #include "parser/SQLParserLexer.h"
-// #include "parser/SQLParserParser.h"
-// #include "parser/ast/ast_node.h"
-// namespace sql {
+#include "parser/PlutoLexer.h"
+#include "parser/PlutoParser.h"
+#include "parser/ast/ast_node.h"
+namespace pluto {
 
-// AstNodePtr ASTBuilder::parse(const std::string& str) {
-//   antlr4::ANTLRInputStream inputStream(str);
-//   sql::SQLParserLexer lexer(&inputStream);
-//   antlr4::CommonTokenStream tokens(&lexer);
-//   sql::SQLParserParser parser(&tokens);
-//   auto root = parser.singleStatement();
-//   return typeVisit(root);
-// }
+AstNodePtr ASTBuilder::parse(const std::string& str) {
+  antlr4::ANTLRInputStream inputStream(str);
+  PlutoLexer lexer(&inputStream);
+  antlr4::CommonTokenStream tokens(&lexer);
+  PlutoParser parser(&tokens);
+  // auto root = parser.singleStatement();
+  // return typeVisit(root);
+  return nullptr;
+}
 
-// AstNodePtr ASTBuilder::typeVisit(antlr4::ParserRuleContext* ctx) {
-//   auto val = ctx->accept(this);
-//   return std::any_cast<AstNodePtr>(val);
-// }
+AstNodePtr ASTBuilder::typeVisit(antlr4::ParserRuleContext* ctx) {
+  auto val = ctx->accept(this);
+  return std::any_cast<AstNodePtr>(val);
+}
 
-// }  // namespace sql
+}  // namespace pluto

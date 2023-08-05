@@ -2,7 +2,7 @@
 
 #include "parser/ast/ast_node.h"
 
-namespace sql {
+namespace pluto {
 
 FunctionCall::FunctionCall() : AstNode(AstNodeType::FunctionCall) {}
 
@@ -14,4 +14,4 @@ FunctionCall::FunctionCall(const std::string& name,
                            std::initializer_list<AstNodePtr> args)
     : AstNode(AstNodeType::FunctionCall), name_(name), arguments_(args) {}
 
-}  // namespace sql
+}  // namespace pluto

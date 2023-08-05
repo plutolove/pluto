@@ -3,7 +3,7 @@
 
 #include "parser/ast/ast_node.h"
 
-namespace sql {
+namespace pluto {
 
 /*
 EQ  : '=' | '==';
@@ -55,4 +55,4 @@ struct BinaryOp : public AstNode {
   AstNodePtr right_{nullptr};
 };
 
-}  // namespace sql
+}  // namespace pluto
