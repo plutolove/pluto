@@ -19,14 +19,17 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/MLIRContext.h"
+#include "parser/ast_builder.h"
 
-ABSL_FLAG(std::string, conf, "default", "conf path");
+ABSL_FLAG(std::string, input, "", "input source file path");
 
 int main(int argc, char** argvs) {
   absl::ParseCommandLine(argc, argvs);
-  std::cout << "flags: " << absl::GetFlag(FLAGS_conf) << std::endl;
-  INFO("test {}", "sdfgsdfg");
-  WARN("sdfgsdfgsdfg");
+  auto path = absl::GetFlag(FLAGS_input);
+  std::cout << "flags: " << absl::GetFlag(FLAGS_input) << std::endl;
   auto& jit = pluto::SQLJit::getInstance();
+  pluto::ASTBuilder builder;
+  builder.parse("def x ( )  { D2w8E4 ( )    ;    }  ");
+  builder.parse_file("/home/meng/workspace/compiler/data/test.toy");
   return 0;
 }

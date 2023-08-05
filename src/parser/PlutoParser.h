@@ -14,19 +14,19 @@ class  PlutoParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, Identifier = 12, VAR = 13, 
-    DEF = 14, RETURN = 15, PLUS = 16, MINUS = 17, ASTERISK = 18, SLASH = 19, 
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, Identifier = 13, 
+    VAR = 14, RETURN = 15, PLUS = 16, MINUS = 17, ASTERISK = 18, SLASH = 19, 
     PERCENT = 20, TILDE = 21, AMPERSAND = 22, PIPE = 23, HAT = 24, INTEGER_VALUE = 25, 
-    SIMPLE_COMMENT = 26, BRACKETED_EMPTY_COMMENT = 27, BRACKETED_COMMENT = 28, 
-    WS = 29, UNRECOGNIZED = 30, DECIMAL_DIGITS = 31
+    DECIMAL_DIGITS = 26, SIMPLE_COMMENT = 27, BRACKETED_EMPTY_COMMENT = 28, 
+    BRACKETED_COMMENT = 29, WS = 30, UNRECOGNIZED = 31
   };
 
   enum {
-    RuleFunction_list = 0, RuleFuncdef = 1, RuleParameters = 2, RuleBlock = 3, 
-    RuleBlockItemList = 4, RuleBlockItem = 5, RuleReturn_stmt = 6, RuleExpressionStatement = 7, 
-    RuleExpression = 8, RuleValueExpression = 9, RulePrimaryExpression = 10, 
-    RuleConstant = 11, RuleIdentifier_with_dim = 12, RuleDim_value = 13, 
-    RuleConstant_vector = 14
+    RuleFunction_list = 0, RuleFuncdef = 1, RuleFunc_dec = 2, RuleParameters = 3, 
+    RuleBlock = 4, RuleBlockItemList = 5, RuleBlockItem = 6, RuleReturn_stmt = 7, 
+    RuleExpressionStatement = 8, RuleExpression = 9, RuleValueExpression = 10, 
+    RulePrimaryExpression = 11, RuleConstant = 12, RuleIdentifier_with_dim = 13, 
+    RuleDim_value = 14, RuleConstant_vector = 15
   };
 
   explicit PlutoParser(antlr4::TokenStream *input);
@@ -48,6 +48,7 @@ public:
 
   class Function_listContext;
   class FuncdefContext;
+  class Func_decContext;
   class ParametersContext;
   class BlockContext;
   class BlockItemListContext;
@@ -66,6 +67,7 @@ public:
   public:
     Function_listContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *EOF();
     std::vector<FuncdefContext *> funcdef();
     FuncdefContext* funcdef(size_t i);
 
@@ -78,13 +80,11 @@ public:
 
   class  FuncdefContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *func_name = nullptr;
     FuncdefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *DEF();
+    Func_decContext *func_dec();
     ParametersContext *parameters();
     BlockContext *block();
-    antlr4::tree::TerminalNode *Identifier();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -93,13 +93,28 @@ public:
 
   FuncdefContext* funcdef();
 
-  class  ParametersContext : public antlr4::ParserRuleContext {
+  class  Func_decContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *identifierToken = nullptr;
-    std::vector<antlr4::Token *> args;
-    ParametersContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    antlr4::Token *func_name = nullptr;
+    Func_decContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *Identifier();
+
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Func_decContext* func_dec();
+
+  class  ParametersContext : public antlr4::ParserRuleContext {
+  public:
+    PlutoParser::ExpressionContext *expressionContext = nullptr;
+    std::vector<ExpressionContext *> argument;
+    ParametersContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;

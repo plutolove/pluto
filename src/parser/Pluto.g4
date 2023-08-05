@@ -1,16 +1,19 @@
 grammar Pluto;
 
 function_list
-    : funcdef+
+    : funcdef*  EOF
     ;
 
 funcdef
-    : DEF func_name=Identifier parameters block
+    : func_dec parameters block
     ;
 
+func_dec
+    : 'def' func_name=Identifier
+    ;
 
 parameters
-    : '(' args+=Identifier ')'
+    : '(' (argument+=expression (',' argument+=expression)*)? ')'
     ;
 
 block
@@ -76,8 +79,6 @@ Identifier
 VAR
   : 'var';
 
-DEF: 'def';
-
 RETURN: 'return';
 
 PLUS: '+';
@@ -96,7 +97,7 @@ INTEGER_VALUE
     : DIGIT+
     ;
 
-fragment DECIMAL_DIGITS
+DECIMAL_DIGITS
     : DIGIT+ '.' DIGIT*
     | '.' DIGIT+
     ;

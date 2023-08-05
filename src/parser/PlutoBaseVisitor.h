@@ -25,6 +25,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitFunc_dec(PlutoParser::Func_decContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitParameters(PlutoParser::ParametersContext *ctx) override {
     return visitChildren(ctx);
   }

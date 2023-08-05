@@ -24,6 +24,8 @@ public:
 
     virtual std::any visitFuncdef(PlutoParser::FuncdefContext *context) = 0;
 
+    virtual std::any visitFunc_dec(PlutoParser::Func_decContext *context) = 0;
+
     virtual std::any visitParameters(PlutoParser::ParametersContext *context) = 0;
 
     virtual std::any visitBlock(PlutoParser::BlockContext *context) = 0;
