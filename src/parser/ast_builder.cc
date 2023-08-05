@@ -10,9 +10,8 @@ AstNodePtr ASTBuilder::parse(const std::string& str) {
   PlutoLexer lexer(&inputStream);
   antlr4::CommonTokenStream tokens(&lexer);
   PlutoParser parser(&tokens);
-  // auto root = parser.singleStatement();
-  // return typeVisit(root);
-  return nullptr;
+  auto root = parser.function_list();
+  return typeVisit(root);
 }
 
 AstNodePtr ASTBuilder::typeVisit(antlr4::ParserRuleContext* ctx) {
