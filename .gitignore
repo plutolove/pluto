@@ -1,0 +1,4 @@
+.vscode
+.xmake
+src/parser/.antlr
+build
