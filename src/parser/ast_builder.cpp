@@ -32,12 +32,12 @@ static inline Location generateLoc(antlr4::Token *token) {
 
 #define LOC() (generateLoc(ctx->start))
 
-#define AssertAst(ast_ptr, type)                                              \
-  do {                                                                        \
-    if (ast_ptr->getType() != type) {                                         \
+#define AssertAst(ast_ptr, type)                                               \
+  do {                                                                         \
+    if (ast_ptr->getType() != type) {                                          \
       FATAL("node type not same, {}:{}", static_cast<int>(ast_ptr->getType()), \
-           static_cast<int>(type));                                           \
-    }                                                                         \
+            static_cast<int>(type));                                           \
+    }                                                                          \
   } while (0)
 
 ModuleAstPtr ASTBuilder::parse(const std::string &str) {
@@ -49,11 +49,10 @@ ModuleAstPtr ASTBuilder::parse(const std::string &str) {
   PlutoErrorListener listenerError;
   parser.addErrorListener(&listenerError);
   auto root = parser.function_list();
-  INFO("00 text: {}", root->getText());
   if (not listenerError.m_strErrMsg.empty()) {
-    INFO("00 error msg: {}", listenerError.error_msg());
+    ERROR("error msg: {}", listenerError.error_msg());
   }
-  return nullptr;
+  return typeid_cast<ModuleAstPtr>(typeVisit(root));
 }
 
 ModuleAstPtr ASTBuilder::parse_file(const std::string &path) {
@@ -67,9 +66,8 @@ ModuleAstPtr ASTBuilder::parse_file(const std::string &path) {
   PlutoErrorListener listenerError;
   parser.addErrorListener(&listenerError);
   auto root = parser.function_list();
-  INFO("text: {}", root->getText());
   if (not listenerError.m_strErrMsg.empty()) {
-    INFO("error msg: {}", listenerError.error_msg());
+    ERROR("error msg: {}", listenerError.error_msg());
   }
   return typeid_cast<ModuleAstPtr>(typeVisit(root));
 }

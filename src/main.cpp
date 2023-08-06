@@ -29,7 +29,6 @@ int main(int argc, char** argvs) {
   std::cout << "flags: " << absl::GetFlag(FLAGS_input) << std::endl;
   auto& jit = pluto::SQLJit::getInstance();
   pluto::ASTBuilder builder;
-  // builder.parse("def x ( )  { return D2w8E4 ( )    ;    }  ");
-  builder.parse_file("/home/meng/workspace/compiler/data/test.toy");
+  builder.parse_file(path);
   return 0;
 }
