@@ -38,7 +38,6 @@ expressionStatement
 
 expression
     :   valueExpression
-    |   valueExpression
     ;
 
 valueExpression

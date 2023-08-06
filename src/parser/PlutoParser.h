@@ -345,8 +345,8 @@ public:
     antlr4::Token *integer_valueToken = nullptr;
     std::vector<antlr4::Token *> vec;
     antlr4::Token *decimal_digitsToken = nullptr;
-    antlr4::Token *_tset319 = nullptr;
-    antlr4::Token *_tset330 = nullptr;
+    antlr4::Token *_tset315 = nullptr;
+    antlr4::Token *_tset326 = nullptr;
     Constant_vectorContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<antlr4::tree::TerminalNode *> INTEGER_VALUE();

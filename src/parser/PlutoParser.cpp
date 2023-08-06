@@ -61,51 +61,50 @@ void plutoParserInitialize() {
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,31,149,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,31,147,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,1,0,5,0,
   	30,8,0,10,0,12,0,33,9,0,1,0,1,0,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,3,1,3,1,
   	3,1,3,5,3,48,8,3,10,3,12,3,51,9,3,3,3,53,8,3,1,3,1,3,1,4,1,4,1,4,3,4,
   	60,8,4,1,4,1,4,1,5,5,5,65,8,5,10,5,12,5,68,9,5,1,6,1,6,1,7,1,7,1,7,1,
   	7,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,3,8,89,8,8,1,9,
-  	1,9,3,9,93,8,9,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,5,10,104,
-  	8,10,10,10,12,10,107,9,10,1,11,1,11,1,11,1,11,1,11,1,11,5,11,115,8,11,
-  	10,11,12,11,118,9,11,3,11,120,8,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,
-  	128,8,11,1,12,1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,13,5,13,140,8,
-  	13,10,13,12,13,143,9,13,3,13,145,8,13,1,13,1,13,1,13,0,1,20,14,0,2,4,
-  	6,8,10,12,14,16,18,20,22,24,26,0,3,1,0,18,20,1,0,16,17,1,0,25,26,150,
-  	0,31,1,0,0,0,2,36,1,0,0,0,4,39,1,0,0,0,6,43,1,0,0,0,8,56,1,0,0,0,10,66,
-  	1,0,0,0,12,69,1,0,0,0,14,71,1,0,0,0,16,88,1,0,0,0,18,92,1,0,0,0,20,94,
-  	1,0,0,0,22,127,1,0,0,0,24,129,1,0,0,0,26,135,1,0,0,0,28,30,3,2,1,0,29,
-  	28,1,0,0,0,30,33,1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,
-  	31,1,0,0,0,34,35,5,0,0,1,35,1,1,0,0,0,36,37,3,4,2,0,37,38,3,8,4,0,38,
-  	3,1,0,0,0,39,40,5,1,0,0,40,41,5,15,0,0,41,42,3,6,3,0,42,5,1,0,0,0,43,
-  	52,5,2,0,0,44,49,5,15,0,0,45,46,5,3,0,0,46,48,5,15,0,0,47,45,1,0,0,0,
-  	48,51,1,0,0,0,49,47,1,0,0,0,49,50,1,0,0,0,50,53,1,0,0,0,51,49,1,0,0,0,
-  	52,44,1,0,0,0,52,53,1,0,0,0,53,54,1,0,0,0,54,55,5,4,0,0,55,7,1,0,0,0,
-  	56,57,5,5,0,0,57,59,3,10,5,0,58,60,3,14,7,0,59,58,1,0,0,0,59,60,1,0,0,
-  	0,60,61,1,0,0,0,61,62,5,6,0,0,62,9,1,0,0,0,63,65,3,12,6,0,64,63,1,0,0,
-  	0,65,68,1,0,0,0,66,64,1,0,0,0,66,67,1,0,0,0,67,11,1,0,0,0,68,66,1,0,0,
-  	0,69,70,3,16,8,0,70,13,1,0,0,0,71,72,5,7,0,0,72,73,3,18,9,0,73,74,5,8,
-  	0,0,74,15,1,0,0,0,75,76,5,9,0,0,76,77,5,15,0,0,77,78,5,10,0,0,78,79,3,
-  	18,9,0,79,80,5,8,0,0,80,89,1,0,0,0,81,82,5,9,0,0,82,83,5,15,0,0,83,84,
-  	3,24,12,0,84,85,5,10,0,0,85,86,3,18,9,0,86,87,5,8,0,0,87,89,1,0,0,0,88,
-  	75,1,0,0,0,88,81,1,0,0,0,89,17,1,0,0,0,90,93,3,20,10,0,91,93,3,20,10,
-  	0,92,90,1,0,0,0,92,91,1,0,0,0,93,19,1,0,0,0,94,95,6,10,-1,0,95,96,3,22,
-  	11,0,96,105,1,0,0,0,97,98,10,2,0,0,98,99,7,0,0,0,99,104,3,20,10,3,100,
-  	101,10,1,0,0,101,102,7,1,0,0,102,104,3,20,10,2,103,97,1,0,0,0,103,100,
-  	1,0,0,0,104,107,1,0,0,0,105,103,1,0,0,0,105,106,1,0,0,0,106,21,1,0,0,
-  	0,107,105,1,0,0,0,108,128,3,26,13,0,109,110,5,15,0,0,110,119,5,2,0,0,
-  	111,116,3,18,9,0,112,113,5,3,0,0,113,115,3,18,9,0,114,112,1,0,0,0,115,
-  	118,1,0,0,0,116,114,1,0,0,0,116,117,1,0,0,0,117,120,1,0,0,0,118,116,1,
-  	0,0,0,119,111,1,0,0,0,119,120,1,0,0,0,120,121,1,0,0,0,121,128,5,4,0,0,
-  	122,128,5,15,0,0,123,124,5,2,0,0,124,125,3,18,9,0,125,126,5,4,0,0,126,
-  	128,1,0,0,0,127,108,1,0,0,0,127,109,1,0,0,0,127,122,1,0,0,0,127,123,1,
-  	0,0,0,128,23,1,0,0,0,129,130,5,11,0,0,130,131,5,25,0,0,131,132,5,3,0,
-  	0,132,133,5,25,0,0,133,134,5,12,0,0,134,25,1,0,0,0,135,144,5,13,0,0,136,
-  	141,7,2,0,0,137,138,5,3,0,0,138,140,7,2,0,0,139,137,1,0,0,0,140,143,1,
-  	0,0,0,141,139,1,0,0,0,141,142,1,0,0,0,142,145,1,0,0,0,143,141,1,0,0,0,
-  	144,136,1,0,0,0,144,145,1,0,0,0,145,146,1,0,0,0,146,147,5,14,0,0,147,
-  	27,1,0,0,0,14,31,49,52,59,66,88,92,103,105,116,119,127,141,144
+  	1,9,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,5,10,102,8,10,10,10,
+  	12,10,105,9,10,1,11,1,11,1,11,1,11,1,11,1,11,5,11,113,8,11,10,11,12,11,
+  	116,9,11,3,11,118,8,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,126,8,11,1,
+  	12,1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,13,5,13,138,8,13,10,13,12,
+  	13,141,9,13,3,13,143,8,13,1,13,1,13,1,13,0,1,20,14,0,2,4,6,8,10,12,14,
+  	16,18,20,22,24,26,0,3,1,0,18,20,1,0,16,17,1,0,25,26,147,0,31,1,0,0,0,
+  	2,36,1,0,0,0,4,39,1,0,0,0,6,43,1,0,0,0,8,56,1,0,0,0,10,66,1,0,0,0,12,
+  	69,1,0,0,0,14,71,1,0,0,0,16,88,1,0,0,0,18,90,1,0,0,0,20,92,1,0,0,0,22,
+  	125,1,0,0,0,24,127,1,0,0,0,26,133,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,0,
+  	30,33,1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,31,1,0,0,0,
+  	34,35,5,0,0,1,35,1,1,0,0,0,36,37,3,4,2,0,37,38,3,8,4,0,38,3,1,0,0,0,39,
+  	40,5,1,0,0,40,41,5,15,0,0,41,42,3,6,3,0,42,5,1,0,0,0,43,52,5,2,0,0,44,
+  	49,5,15,0,0,45,46,5,3,0,0,46,48,5,15,0,0,47,45,1,0,0,0,48,51,1,0,0,0,
+  	49,47,1,0,0,0,49,50,1,0,0,0,50,53,1,0,0,0,51,49,1,0,0,0,52,44,1,0,0,0,
+  	52,53,1,0,0,0,53,54,1,0,0,0,54,55,5,4,0,0,55,7,1,0,0,0,56,57,5,5,0,0,
+  	57,59,3,10,5,0,58,60,3,14,7,0,59,58,1,0,0,0,59,60,1,0,0,0,60,61,1,0,0,
+  	0,61,62,5,6,0,0,62,9,1,0,0,0,63,65,3,12,6,0,64,63,1,0,0,0,65,68,1,0,0,
+  	0,66,64,1,0,0,0,66,67,1,0,0,0,67,11,1,0,0,0,68,66,1,0,0,0,69,70,3,16,
+  	8,0,70,13,1,0,0,0,71,72,5,7,0,0,72,73,3,18,9,0,73,74,5,8,0,0,74,15,1,
+  	0,0,0,75,76,5,9,0,0,76,77,5,15,0,0,77,78,5,10,0,0,78,79,3,18,9,0,79,80,
+  	5,8,0,0,80,89,1,0,0,0,81,82,5,9,0,0,82,83,5,15,0,0,83,84,3,24,12,0,84,
+  	85,5,10,0,0,85,86,3,18,9,0,86,87,5,8,0,0,87,89,1,0,0,0,88,75,1,0,0,0,
+  	88,81,1,0,0,0,89,17,1,0,0,0,90,91,3,20,10,0,91,19,1,0,0,0,92,93,6,10,
+  	-1,0,93,94,3,22,11,0,94,103,1,0,0,0,95,96,10,2,0,0,96,97,7,0,0,0,97,102,
+  	3,20,10,3,98,99,10,1,0,0,99,100,7,1,0,0,100,102,3,20,10,2,101,95,1,0,
+  	0,0,101,98,1,0,0,0,102,105,1,0,0,0,103,101,1,0,0,0,103,104,1,0,0,0,104,
+  	21,1,0,0,0,105,103,1,0,0,0,106,126,3,26,13,0,107,108,5,15,0,0,108,117,
+  	5,2,0,0,109,114,3,18,9,0,110,111,5,3,0,0,111,113,3,18,9,0,112,110,1,0,
+  	0,0,113,116,1,0,0,0,114,112,1,0,0,0,114,115,1,0,0,0,115,118,1,0,0,0,116,
+  	114,1,0,0,0,117,109,1,0,0,0,117,118,1,0,0,0,118,119,1,0,0,0,119,126,5,
+  	4,0,0,120,126,5,15,0,0,121,122,5,2,0,0,122,123,3,18,9,0,123,124,5,4,0,
+  	0,124,126,1,0,0,0,125,106,1,0,0,0,125,107,1,0,0,0,125,120,1,0,0,0,125,
+  	121,1,0,0,0,126,23,1,0,0,0,127,128,5,11,0,0,128,129,5,25,0,0,129,130,
+  	5,3,0,0,130,131,5,25,0,0,131,132,5,12,0,0,132,25,1,0,0,0,133,142,5,13,
+  	0,0,134,139,7,2,0,0,135,136,5,3,0,0,136,138,7,2,0,0,137,135,1,0,0,0,138,
+  	141,1,0,0,0,139,137,1,0,0,0,139,140,1,0,0,0,140,143,1,0,0,0,141,139,1,
+  	0,0,0,142,134,1,0,0,0,142,143,1,0,0,0,143,144,1,0,0,0,144,145,5,14,0,
+  	0,145,27,1,0,0,0,13,31,49,52,59,66,88,101,103,114,117,125,139,142
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -797,26 +796,9 @@ PlutoParser::ExpressionContext* PlutoParser::expression() {
     exitRule();
   });
   try {
-    setState(92);
-    _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 6, _ctx)) {
-    case 1: {
-      enterOuterAlt(_localctx, 1);
-      setState(90);
-      valueExpression(0);
-      break;
-    }
-
-    case 2: {
-      enterOuterAlt(_localctx, 2);
-      setState(91);
-      valueExpression(0);
-      break;
-    }
-
-    default:
-      break;
-    }
+    enterOuterAlt(_localctx, 1);
+    setState(90);
+    valueExpression(0);
    
   }
   catch (RecognitionException &e) {
@@ -927,29 +909,29 @@ PlutoParser::ValueExpressionContext* PlutoParser::valueExpression(int precedence
     _ctx = _localctx;
     previousContext = _localctx;
 
-    setState(95);
+    setState(93);
     primaryExpression();
     _ctx->stop = _input->LT(-1);
-    setState(105);
+    setState(103);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 7, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(103);
+        setState(101);
         _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 7, _ctx)) {
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 6, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<ArithmeticBinaryContext>(_tracker.createInstance<ValueExpressionContext>(parentContext, parentState));
           _localctx = newContext;
           newContext->left = previousContext;
           pushNewRecursionContext(newContext, startState, RuleValueExpression);
-          setState(97);
+          setState(95);
 
           if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
-          setState(98);
+          setState(96);
           antlrcpp::downCast<ArithmeticBinaryContext *>(_localctx)->operator_ = _input->LT(1);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
@@ -960,7 +942,7 @@ PlutoParser::ValueExpressionContext* PlutoParser::valueExpression(int precedence
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(99);
+          setState(97);
           antlrcpp::downCast<ArithmeticBinaryContext *>(_localctx)->right = valueExpression(3);
           break;
         }
@@ -970,10 +952,10 @@ PlutoParser::ValueExpressionContext* PlutoParser::valueExpression(int precedence
           _localctx = newContext;
           newContext->left = previousContext;
           pushNewRecursionContext(newContext, startState, RuleValueExpression);
-          setState(100);
+          setState(98);
 
           if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
-          setState(101);
+          setState(99);
           antlrcpp::downCast<ArithmeticBinaryContext *>(_localctx)->operator_ = _input->LT(1);
           _la = _input->LA(1);
           if (!(_la == PlutoParser::PLUS
@@ -985,7 +967,7 @@ PlutoParser::ValueExpressionContext* PlutoParser::valueExpression(int precedence
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(102);
+          setState(100);
           antlrcpp::downCast<ArithmeticBinaryContext *>(_localctx)->right = valueExpression(2);
           break;
         }
@@ -994,9 +976,9 @@ PlutoParser::ValueExpressionContext* PlutoParser::valueExpression(int precedence
           break;
         } 
       }
-      setState(107);
+      setState(105);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 7, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -1103,13 +1085,13 @@ PlutoParser::PrimaryExpressionContext* PlutoParser::primaryExpression() {
     exitRule();
   });
   try {
-    setState(127);
+    setState(125);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 11, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx)) {
     case 1: {
       _localctx = _tracker.createInstance<PlutoParser::ConstantDefaultContext>(_localctx);
       enterOuterAlt(_localctx, 1);
-      setState(108);
+      setState(106);
       constant_vector();
       break;
     }
@@ -1117,34 +1099,34 @@ PlutoParser::PrimaryExpressionContext* PlutoParser::primaryExpression() {
     case 2: {
       _localctx = _tracker.createInstance<PlutoParser::FunctionCallContext>(_localctx);
       enterOuterAlt(_localctx, 2);
-      setState(109);
+      setState(107);
       antlrcpp::downCast<FunctionCallContext *>(_localctx)->functionName = match(PlutoParser::Identifier);
-      setState(110);
+      setState(108);
       match(PlutoParser::T__1);
-      setState(119);
+      setState(117);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if ((((_la & ~ 0x3fULL) == 0) &&
         ((1ULL << _la) & 40964) != 0)) {
-        setState(111);
+        setState(109);
         antlrcpp::downCast<FunctionCallContext *>(_localctx)->expressionContext = expression();
         antlrcpp::downCast<FunctionCallContext *>(_localctx)->argument.push_back(antlrcpp::downCast<FunctionCallContext *>(_localctx)->expressionContext);
-        setState(116);
+        setState(114);
         _errHandler->sync(this);
         _la = _input->LA(1);
         while (_la == PlutoParser::T__2) {
-          setState(112);
+          setState(110);
           match(PlutoParser::T__2);
-          setState(113);
+          setState(111);
           antlrcpp::downCast<FunctionCallContext *>(_localctx)->expressionContext = expression();
           antlrcpp::downCast<FunctionCallContext *>(_localctx)->argument.push_back(antlrcpp::downCast<FunctionCallContext *>(_localctx)->expressionContext);
-          setState(118);
+          setState(116);
           _errHandler->sync(this);
           _la = _input->LA(1);
         }
       }
-      setState(121);
+      setState(119);
       match(PlutoParser::T__3);
       break;
     }
@@ -1152,7 +1134,7 @@ PlutoParser::PrimaryExpressionContext* PlutoParser::primaryExpression() {
     case 3: {
       _localctx = _tracker.createInstance<PlutoParser::ColumnReferenceContext>(_localctx);
       enterOuterAlt(_localctx, 3);
-      setState(122);
+      setState(120);
       match(PlutoParser::Identifier);
       break;
     }
@@ -1160,11 +1142,11 @@ PlutoParser::PrimaryExpressionContext* PlutoParser::primaryExpression() {
     case 4: {
       _localctx = _tracker.createInstance<PlutoParser::ParenthesizedExpressionContext>(_localctx);
       enterOuterAlt(_localctx, 4);
-      setState(123);
+      setState(121);
       match(PlutoParser::T__1);
-      setState(124);
+      setState(122);
       expression();
-      setState(125);
+      setState(123);
       match(PlutoParser::T__3);
       break;
     }
@@ -1223,15 +1205,15 @@ PlutoParser::Dim_valueContext* PlutoParser::dim_value() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(129);
+    setState(127);
     match(PlutoParser::T__10);
-    setState(130);
+    setState(128);
     antlrcpp::downCast<Dim_valueContext *>(_localctx)->dim_x = match(PlutoParser::INTEGER_VALUE);
-    setState(131);
+    setState(129);
     match(PlutoParser::T__2);
-    setState(132);
+    setState(130);
     antlrcpp::downCast<Dim_valueContext *>(_localctx)->dim_y = match(PlutoParser::INTEGER_VALUE);
-    setState(133);
+    setState(131);
     match(PlutoParser::T__11);
    
   }
@@ -1293,53 +1275,53 @@ PlutoParser::Constant_vectorContext* PlutoParser::constant_vector() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(135);
+    setState(133);
     match(PlutoParser::T__12);
-    setState(144);
+    setState(142);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == PlutoParser::INTEGER_VALUE
 
     || _la == PlutoParser::DECIMAL_DIGITS) {
-      setState(136);
-      antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset319 = _input->LT(1);
+      setState(134);
+      antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset315 = _input->LT(1);
       _la = _input->LA(1);
       if (!(_la == PlutoParser::INTEGER_VALUE
 
       || _la == PlutoParser::DECIMAL_DIGITS)) {
-        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset319 = _errHandler->recoverInline(this);
+        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset315 = _errHandler->recoverInline(this);
       }
       else {
         _errHandler->reportMatch(this);
         consume();
       }
-      antlrcpp::downCast<Constant_vectorContext *>(_localctx)->vec.push_back(antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset319);
-      setState(141);
+      antlrcpp::downCast<Constant_vectorContext *>(_localctx)->vec.push_back(antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset315);
+      setState(139);
       _errHandler->sync(this);
       _la = _input->LA(1);
       while (_la == PlutoParser::T__2) {
-        setState(137);
+        setState(135);
         match(PlutoParser::T__2);
-        setState(138);
-        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset330 = _input->LT(1);
+        setState(136);
+        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset326 = _input->LT(1);
         _la = _input->LA(1);
         if (!(_la == PlutoParser::INTEGER_VALUE
 
         || _la == PlutoParser::DECIMAL_DIGITS)) {
-          antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset330 = _errHandler->recoverInline(this);
+          antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset326 = _errHandler->recoverInline(this);
         }
         else {
           _errHandler->reportMatch(this);
           consume();
         }
-        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->vec.push_back(antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset330);
-        setState(143);
+        antlrcpp::downCast<Constant_vectorContext *>(_localctx)->vec.push_back(antlrcpp::downCast<Constant_vectorContext *>(_localctx)->_tset326);
+        setState(141);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
     }
-    setState(146);
+    setState(144);
     match(PlutoParser::T__13);
    
   }
