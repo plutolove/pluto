@@ -25,8 +25,7 @@ public:
     RuleFunction_list = 0, RuleFuncdef = 1, RuleFunc_dec = 2, RuleParameters = 3, 
     RuleBlock = 4, RuleBlockItemList = 5, RuleBlockItem = 6, RuleReturn_stmt = 7, 
     RuleExpressionStatement = 8, RuleExpression = 9, RuleValueExpression = 10, 
-    RulePrimaryExpression = 11, RuleIdentifier_with_dim = 12, RuleDim_value = 13, 
-    RuleConstant_vector = 14
+    RulePrimaryExpression = 11, RuleDim_value = 12, RuleConstant_vector = 13
   };
 
   explicit PlutoParser(antlr4::TokenStream *input);
@@ -58,7 +57,6 @@ public:
   class ExpressionContext;
   class ValueExpressionContext;
   class PrimaryExpressionContext;
-  class Identifier_with_dimContext;
   class Dim_valueContext;
   class Constant_vectorContext; 
 
@@ -82,7 +80,6 @@ public:
     FuncdefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     Func_decContext *func_dec();
-    ParametersContext *parameters();
     BlockContext *block();
 
 
@@ -97,6 +94,7 @@ public:
     antlr4::Token *func_name = nullptr;
     Func_decContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    ParametersContext *parameters();
     antlr4::tree::TerminalNode *Identifier();
 
 
@@ -108,12 +106,12 @@ public:
 
   class  ParametersContext : public antlr4::ParserRuleContext {
   public:
-    PlutoParser::ExpressionContext *expressionContext = nullptr;
-    std::vector<ExpressionContext *> argument;
+    antlr4::Token *identifierToken = nullptr;
+    std::vector<antlr4::Token *> argument;
     ParametersContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ExpressionContext *> expression();
-    ExpressionContext* expression(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> Identifier();
+    antlr4::tree::TerminalNode* Identifier(size_t i);
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -140,7 +138,8 @@ public:
   public:
     BlockItemListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    BlockItemContext *blockItem();
+    std::vector<BlockItemContext *> blockItem();
+    BlockItemContext* blockItem(size_t i);
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -153,8 +152,7 @@ public:
   public:
     BlockItemContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ExpressionStatementContext *> expressionStatement();
-    ExpressionStatementContext* expressionStatement(size_t i);
+    ExpressionStatementContext *expressionStatement();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -178,16 +176,39 @@ public:
 
   class  ExpressionStatementContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *name = nullptr;
     ExpressionStatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ExpressionStatementContext() = default;
+    void copyFrom(ExpressionStatementContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  Normal_var_declContext : public ExpressionStatementContext {
+  public:
+    Normal_var_declContext(ExpressionStatementContext *ctx);
+
+    antlr4::Token *name = nullptr;
     ExpressionContext *expression();
     antlr4::tree::TerminalNode *Identifier();
-    Identifier_with_dimContext *identifier_with_dim();
-
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  Constant_var_declContext : public ExpressionStatementContext {
+  public:
+    Constant_var_declContext(ExpressionStatementContext *ctx);
+
+    antlr4::Token *name = nullptr;
+    PlutoParser::Dim_valueContext *dim = nullptr;
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *Identifier();
+    Dim_valueContext *dim_value();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   ExpressionStatementContext* expressionStatement();
@@ -303,22 +324,6 @@ public:
 
   PrimaryExpressionContext* primaryExpression();
 
-  class  Identifier_with_dimContext : public antlr4::ParserRuleContext {
-  public:
-    antlr4::Token *name = nullptr;
-    PlutoParser::Dim_valueContext *dim = nullptr;
-    Identifier_with_dimContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *Identifier();
-    Dim_valueContext *dim_value();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  Identifier_with_dimContext* identifier_with_dim();
-
   class  Dim_valueContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *dim_x = nullptr;
@@ -340,8 +345,8 @@ public:
     antlr4::Token *integer_valueToken = nullptr;
     std::vector<antlr4::Token *> vec;
     antlr4::Token *decimal_digitsToken = nullptr;
-    antlr4::Token *_tset321 = nullptr;
-    antlr4::Token *_tset332 = nullptr;
+    antlr4::Token *_tset319 = nullptr;
+    antlr4::Token *_tset330 = nullptr;
     Constant_vectorContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<antlr4::tree::TerminalNode *> INTEGER_VALUE();

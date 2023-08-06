@@ -13,7 +13,7 @@
 #include "antlr4-runtime.h"
 #include "common/exception.h"
 #include "common/log.h"
-#include "common/type_cast.h"
+#include "common/typeid_cast.h"
 #include "fmt/format.h"
 #include "jit/jit.h"
 #include "mlir/IR/Builders.h"

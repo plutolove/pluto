@@ -23,7 +23,8 @@ AMPERSAND: '&';
 PIPE: '|';
 HAT: '^';
 */
-struct BinaryOp : public AstNode {
+class BinaryOp : public AstNode {
+ public:
   enum class BinaryOpType : int8_t {
     Unknow,
     // cmp
@@ -48,8 +49,13 @@ struct BinaryOp : public AstNode {
   };
 
   BinaryOp();
-  BinaryOp(const AstNodePtr& left, BinaryOpType opt, const AstNodePtr& right);
+  BinaryOp(Location loc, const AstNodePtr& left, BinaryOpType opt,
+           const AstNodePtr& right);
+  AstNodePtr getlhs() const { return left_; }
+  AstNodePtr getrhs() const { return right_; }
+  BinaryOpType getOp() const { return opt_; }
 
+ protected:
   AstNodePtr left_{nullptr};
   BinaryOpType opt_{BinaryOpType::Unknow};
   AstNodePtr right_{nullptr};

@@ -6,12 +6,12 @@ namespace pluto {
 
 FunctionCall::FunctionCall() : AstNode(AstNodeType::FunctionCall) {}
 
-FunctionCall::FunctionCall(const std::string& name,
+FunctionCall::FunctionCall(Location loc, const std::string& name,
                            const std::vector<AstNodePtr>& args)
-    : AstNode(AstNodeType::FunctionCall), name_(name), arguments_(args) {}
+    : AstNode(AstNodeType::FunctionCall, loc), name_(name), arguments_(args) {}
 
-FunctionCall::FunctionCall(const std::string& name,
+FunctionCall::FunctionCall(Location loc, const std::string& name,
                            std::initializer_list<AstNodePtr> args)
-    : AstNode(AstNodeType::FunctionCall), name_(name), arguments_(args) {}
+    : AstNode(AstNodeType::FunctionCall, loc), name_(name), arguments_(args) {}
 
 }  // namespace pluto

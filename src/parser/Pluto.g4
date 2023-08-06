@@ -5,15 +5,15 @@ function_list
     ;
 
 funcdef
-    : func_dec parameters block
+    : func_dec block
     ;
 
 func_dec
-    : 'def' func_name=Identifier
+    : 'def' func_name=Identifier parameters
     ;
 
 parameters
-    : '(' (argument+=expression (',' argument+=expression)*)? ')'
+    : '(' (argument+=Identifier (',' argument+=Identifier)*)? ')'
     ;
 
 block
@@ -21,19 +21,19 @@ block
     ; 
 
 blockItemList
-    :   blockItem
+    :   blockItem*
     ;
 
 blockItem
-    :  expressionStatement* 
+    :  expressionStatement 
     ;
 
 return_stmt
     : 'return' expression ';';
 
 expressionStatement
-    :   'var' name=Identifier '=' expression ';'
-    |   'var' identifier_with_dim '=' expression ';'
+    :   'var' name=Identifier '=' expression ';'  #normal_var_decl
+    |   'var' name = Identifier dim = dim_value '=' expression ';' #constant_var_decl
     ;
 
 expression
@@ -52,10 +52,6 @@ primaryExpression
     | functionName=Identifier '(' (argument+=expression (',' argument+=expression)*)? ')'                      #functionCall
     | Identifier                                                                               #columnReference
     | '(' expression ')'                                                                       #parenthesizedExpression
-    ;
-
-identifier_with_dim
-    : name = Identifier dim = dim_value 
     ;
 
 dim_value

@@ -36,7 +36,9 @@ public:
 
     virtual std::any visitReturn_stmt(PlutoParser::Return_stmtContext *context) = 0;
 
-    virtual std::any visitExpressionStatement(PlutoParser::ExpressionStatementContext *context) = 0;
+    virtual std::any visitNormal_var_decl(PlutoParser::Normal_var_declContext *context) = 0;
+
+    virtual std::any visitConstant_var_decl(PlutoParser::Constant_var_declContext *context) = 0;
 
     virtual std::any visitExpression(PlutoParser::ExpressionContext *context) = 0;
 
@@ -51,8 +53,6 @@ public:
     virtual std::any visitColumnReference(PlutoParser::ColumnReferenceContext *context) = 0;
 
     virtual std::any visitParenthesizedExpression(PlutoParser::ParenthesizedExpressionContext *context) = 0;
-
-    virtual std::any visitIdentifier_with_dim(PlutoParser::Identifier_with_dimContext *context) = 0;
 
     virtual std::any visitDim_value(PlutoParser::Dim_valueContext *context) = 0;
 

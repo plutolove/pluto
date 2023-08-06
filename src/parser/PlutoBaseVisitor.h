@@ -49,7 +49,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitExpressionStatement(PlutoParser::ExpressionStatementContext *ctx) override {
+  virtual std::any visitNormal_var_decl(PlutoParser::Normal_var_declContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitConstant_var_decl(PlutoParser::Constant_var_declContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -78,10 +82,6 @@ public:
   }
 
   virtual std::any visitParenthesizedExpression(PlutoParser::ParenthesizedExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIdentifier_with_dim(PlutoParser::Identifier_with_dimContext *ctx) override {
     return visitChildren(ctx);
   }
 
