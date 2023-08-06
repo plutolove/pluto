@@ -52,8 +52,6 @@ class ASTBuilder : public pluto::PlutoBaseVisitor {
   virtual std::any visitParenthesizedExpression(
       PlutoParser::ParenthesizedExpressionContext *ctx) override;
 
-  virtual std::any visitDim_value(PlutoParser::Dim_valueContext *ctx) override;
-
   virtual std::any visitConstant_vector(
       PlutoParser::Constant_vectorContext *ctx) override;
 };

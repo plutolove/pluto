@@ -3,6 +3,8 @@
 #include <any>
 #include <fstream>
 #include <memory>
+#include <string>
+#include <vector>
 
 #include "TokenFactory.h"
 #include "common/exception.h"
@@ -12,7 +14,10 @@
 #include "parser/PlutoLexer.h"
 #include "parser/PlutoParser.h"
 #include "parser/ast/ast_node.h"
+#include "parser/ast/binary_op.h"
+#include "parser/ast/function_call.h"
 #include "parser/ast/function_def.h"
+#include "parser/ast/literal.h"
 #include "parser/ast/module_ast.h"
 #include "parser/ast/proto_type.h"
 #include "parser/ast/return_expr.h"
@@ -30,7 +35,7 @@ static inline Location generateLoc(antlr4::Token *token) {
 #define AssertAst(ast_ptr, type)                                              \
   do {                                                                        \
     if (ast_ptr->getType() != type) {                                         \
-      INFO("node type not same, {}:{}", static_cast<int>(ast_ptr->getType()), \
+      FATAL("node type not same, {}:{}", static_cast<int>(ast_ptr->getType()), \
            static_cast<int>(type));                                           \
     }                                                                         \
   } while (0)
@@ -78,11 +83,10 @@ std::any ASTBuilder::visitFunction_list(
     PlutoParser::Function_listContext *ctx) {
   std::vector<FunctionDefPtr> function_list;
   function_list.reserve(ctx->funcdef().size());
-  // for (auto &func : ctx->funcdef()) {
-  //   function_list.push_back(std::any_cast<FunctionDefPtr>(typeVisit(func)));
-  // }
-  INFO("debug token: {}, line: {}, pos: {}", ctx->start->getText(),
-       ctx->start->getLine(), ctx->start->getCharPositionInLine());
+  for (auto &func : ctx->funcdef()) {
+    auto ptr = typeVisit(func);
+    function_list.push_back(typeid_cast<FunctionDefPtr>(ptr));
+  }
   AstNodePtr module_ast = std::make_shared<ModuleAst>(LOC(), function_list);
   return module_ast;
 }
@@ -151,28 +155,72 @@ std::any ASTBuilder::visitConstant_var_decl(
   return ret;
 }
 
-std::any ASTBuilder::visitExpression(PlutoParser::ExpressionContext *ctx) {}
+std::any ASTBuilder::visitExpression(PlutoParser::ExpressionContext *ctx) {
+  return typeVisit(ctx->valueExpression());
+}
 
 std::any ASTBuilder::visitValueExpressionDefault(
-    PlutoParser::ValueExpressionDefaultContext *ctx) {}
+    PlutoParser::ValueExpressionDefaultContext *ctx) {
+  return typeVisit(ctx->primaryExpression());
+}
 
 std::any ASTBuilder::visitArithmeticBinary(
-    PlutoParser::ArithmeticBinaryContext *ctx) {}
+    PlutoParser::ArithmeticBinaryContext *ctx) {
+  auto loc = LOC();
+  auto lhs = typeVisit(ctx->left);
+  auto rhs = typeVisit(ctx->right);
+  AstNodePtr ret;
+  if ("+" == ctx->operator_->getText()) {
+    ret =
+        std::make_shared<BinaryOp>(loc, lhs, BinaryOp::BinaryOpType::PLUS, rhs);
+  } else if ("-" == ctx->operator_->getText()) {
+    ret = std::make_shared<BinaryOp>(loc, lhs, BinaryOp::BinaryOpType::MINUS,
+                                     rhs);
+  } else if ("*" == ctx->operator_->getText()) {
+    ret = std::make_shared<BinaryOp>(loc, lhs, BinaryOp::BinaryOpType::ASTERISK,
+                                     rhs);
+  } else {
+    ThrowException(-1, "not support: {}", ctx->getText());
+  }
+  return ret;
+}
 
 std::any ASTBuilder::visitConstantDefault(
-    PlutoParser::ConstantDefaultContext *ctx) {}
+    PlutoParser::ConstantDefaultContext *ctx) {
+  return typeVisit(ctx->constant_vector());
+}
 
-std::any ASTBuilder::visitFunctionCall(PlutoParser::FunctionCallContext *ctx) {}
+std::any ASTBuilder::visitFunctionCall(PlutoParser::FunctionCallContext *ctx) {
+  std::vector<AstNodePtr> args;
+  for (auto &item : ctx->argument) {
+    args.push_back(typeVisit(item));
+  }
+  AstNodePtr ret =
+      std::make_shared<FunctionCall>(LOC(), ctx->functionName->getText(), args);
+  return ret;
+}
 
 std::any ASTBuilder::visitColumnReference(
-    PlutoParser::ColumnReferenceContext *ctx) {}
+    PlutoParser::ColumnReferenceContext *ctx) {
+  AstNodePtr ret = std::make_shared<VariableExpr>(LOC(), ctx->getText());
+  return ret;
+}
 
 std::any ASTBuilder::visitParenthesizedExpression(
-    PlutoParser::ParenthesizedExpressionContext *ctx) {}
-
-std::any ASTBuilder::visitDim_value(PlutoParser::Dim_valueContext *ctx) {}
+    PlutoParser::ParenthesizedExpressionContext *ctx) {
+  return typeVisit(ctx->expression());
+}
 
 std::any ASTBuilder::visitConstant_vector(
-    PlutoParser::Constant_vectorContext *ctx) {}
+    PlutoParser::Constant_vectorContext *ctx) {
+  std::vector<int32_t> dims;
+  std::vector<AstNodePtr> values;
+  for (auto &item : ctx->vec) {
+    values.push_back(std::make_shared<LiteralDouble>(
+        generateLoc(item), std::stod(item->getText())));
+  }
+  AstNodePtr ret = std::make_shared<LiteralTensor>(LOC(), values, dims);
+  return ret;
+}
 
 }  // namespace pluto
