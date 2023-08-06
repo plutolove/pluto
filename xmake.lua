@@ -1,4 +1,4 @@
-add_rules("mode.debug", "mode.release")
+add_rules("mode.debug") 
 
 set_languages("c++17")
 set_optimize("fastest")
@@ -19,8 +19,11 @@ rule("dep_gen")
 	  os.vrun(
 		  "java -jar ./tools/antlr-4.12.0-complete.jar -visitor -no-listener -Dlanguage=Cpp -package pluto ./src/parser/Pluto.g4 -o ./"
 	  )
-	-- os.vrun("mlir-tblgen  --gen-op-decls ./src/ops.td -o ./src/Ops.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
-	-- os.vrun("mlir-tblgen  --gen-op-defs ./src/ops.td -o ./src/Ops.cpp.inc -I"..os.getenv("LLVM_ROOT").."/include/")
+  os.vrun("mlir-tblgen  --gen-dialect-decls ./src/IR/Op.td -o ./src/IR/Dialect.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
+	os.vrun("mlir-tblgen  --gen-dialect-defs ./src/IR/Op.td -o ./src/IR/Dialect.cpp.inc -I"..os.getenv("LLVM_ROOT").."/include/")
+
+	os.vrun("mlir-tblgen  --gen-op-decls ./src/IR/Op.td -o ./src/IR/Op.h.inc -I"..os.getenv("LLVM_ROOT").."/include/")
+	os.vrun("mlir-tblgen  --gen-op-defs ./src/IR/Op.td -o ./src/IR/Op.cpp.inc -I"..os.getenv("LLVM_ROOT").."/include/")
 end)
 
 target("main")
