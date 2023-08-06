@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseErrorListener.h"
+#include "fmt/format.h"
 
 class PlutoErrorListener : public antlr4::BaseErrorListener {
  public:
@@ -8,6 +9,11 @@ class PlutoErrorListener : public antlr4::BaseErrorListener {
                            antlr4::Token *offendingSymbol, size_t line,
                            size_t charPositionInLine, const std::string &msg,
                            std::exception_ptr e) override;
+  std::string error_msg() const {
+    return fmt::format("line: {}, pos: {}, err msg: {}, symbol: {}, stack: {}",
+                       m_nLine, m_nPositionInLine, m_strErrMsg,
+                       m_strOffendingSymbol, m_strStack);
+  }
 
  public:
   int m_nLine;

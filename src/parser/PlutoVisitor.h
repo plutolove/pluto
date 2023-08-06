@@ -52,8 +52,6 @@ public:
 
     virtual std::any visitParenthesizedExpression(PlutoParser::ParenthesizedExpressionContext *context) = 0;
 
-    virtual std::any visitConstant(PlutoParser::ConstantContext *context) = 0;
-
     virtual std::any visitIdentifier_with_dim(PlutoParser::Identifier_with_dimContext *context) = 0;
 
     virtual std::any visitDim_value(PlutoParser::Dim_valueContext *context) = 0;

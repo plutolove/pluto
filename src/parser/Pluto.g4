@@ -1,7 +1,7 @@
 grammar Pluto;
 
 function_list
-    : funcdef*  EOF
+    : funcdef* EOF
     ;
 
 funcdef
@@ -29,14 +29,16 @@ blockItem
     ;
 
 return_stmt
-    : RETURN expressionStatement;
+    : 'return' expression ';';
 
 expressionStatement
-    :   expression? ';'
+    :   'var' name=Identifier '=' expression ';'
+    |   'var' identifier_with_dim '=' expression ';'
     ;
 
 expression
     :   valueExpression
+    |   valueExpression
     ;
 
 valueExpression
@@ -46,16 +48,11 @@ valueExpression
     ;
 
 primaryExpression
-    : constant                                                                                 #constantDefault
+    : constant_vector                                                                                 #constantDefault
     | functionName=Identifier '(' (argument+=expression (',' argument+=expression)*)? ')'                      #functionCall
     | Identifier                                                                               #columnReference
     | '(' expression ')'                                                                       #parenthesizedExpression
     ;
-
-constant
-    :  VAR name = identifier_with_dim '=' constant_vector 
-    ;
-
 
 identifier_with_dim
     : name = Identifier dim = dim_value 
@@ -66,7 +63,7 @@ dim_value
     ; 
 
 constant_vector
-    : '[' (vec+=DECIMAL_DIGITS (',' vec+=DECIMAL_DIGITS)*)? ']'
+    : '[' (vec+=(INTEGER_VALUE|DECIMAL_DIGITS) (',' vec+=(INTEGER_VALUE | DECIMAL_DIGITS))*)? ']'
     ;
 
 Identifier
@@ -75,11 +72,6 @@ Identifier
         |  DIGIT 
         )*
     ;
-
-VAR
-  : 'var';
-
-RETURN: 'return';
 
 PLUS: '+';
 MINUS: '-';

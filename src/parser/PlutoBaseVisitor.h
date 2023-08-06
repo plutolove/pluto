@@ -81,10 +81,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitConstant(PlutoParser::ConstantContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitIdentifier_with_dim(PlutoParser::Identifier_with_dimContext *ctx) override {
     return visitChildren(ctx);
   }

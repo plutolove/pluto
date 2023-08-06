@@ -21,7 +21,7 @@ AstNodePtr ASTBuilder::parse(const std::string& str) {
   auto root = parser.function_list();
   INFO("00 text: {}", root->getText());
   if (not listenerError.m_strErrMsg.empty()) {
-    INFO("00 error msg: {}", listenerError.m_strErrMsg);
+    INFO("00 error msg: {}", listenerError.error_msg());
   }
   return nullptr;
 }
@@ -39,7 +39,7 @@ AstNodePtr ASTBuilder::parse_file(const std::string& path) {
   auto root = parser.function_list();
   INFO("text: {}", root->getText());
   if (not listenerError.m_strErrMsg.empty()) {
-    INFO("error msg: {}", listenerError.m_strErrMsg);
+    INFO("error msg: {}", listenerError.error_msg());
   }
   // return typeVisit(root);
   return nullptr;

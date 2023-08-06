@@ -14,9 +14,9 @@ class  PlutoParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, Identifier = 13, 
-    VAR = 14, RETURN = 15, PLUS = 16, MINUS = 17, ASTERISK = 18, SLASH = 19, 
-    PERCENT = 20, TILDE = 21, AMPERSAND = 22, PIPE = 23, HAT = 24, INTEGER_VALUE = 25, 
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
+    Identifier = 15, PLUS = 16, MINUS = 17, ASTERISK = 18, SLASH = 19, PERCENT = 20, 
+    TILDE = 21, AMPERSAND = 22, PIPE = 23, HAT = 24, INTEGER_VALUE = 25, 
     DECIMAL_DIGITS = 26, SIMPLE_COMMENT = 27, BRACKETED_EMPTY_COMMENT = 28, 
     BRACKETED_COMMENT = 29, WS = 30, UNRECOGNIZED = 31
   };
@@ -25,8 +25,8 @@ public:
     RuleFunction_list = 0, RuleFuncdef = 1, RuleFunc_dec = 2, RuleParameters = 3, 
     RuleBlock = 4, RuleBlockItemList = 5, RuleBlockItem = 6, RuleReturn_stmt = 7, 
     RuleExpressionStatement = 8, RuleExpression = 9, RuleValueExpression = 10, 
-    RulePrimaryExpression = 11, RuleConstant = 12, RuleIdentifier_with_dim = 13, 
-    RuleDim_value = 14, RuleConstant_vector = 15
+    RulePrimaryExpression = 11, RuleIdentifier_with_dim = 12, RuleDim_value = 13, 
+    RuleConstant_vector = 14
   };
 
   explicit PlutoParser(antlr4::TokenStream *input);
@@ -58,7 +58,6 @@ public:
   class ExpressionContext;
   class ValueExpressionContext;
   class PrimaryExpressionContext;
-  class ConstantContext;
   class Identifier_with_dimContext;
   class Dim_valueContext;
   class Constant_vectorContext; 
@@ -168,8 +167,7 @@ public:
   public:
     Return_stmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *RETURN();
-    ExpressionStatementContext *expressionStatement();
+    ExpressionContext *expression();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -180,9 +178,12 @@ public:
 
   class  ExpressionStatementContext : public antlr4::ParserRuleContext {
   public:
+    antlr4::Token *name = nullptr;
     ExpressionStatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ExpressionContext *expression();
+    antlr4::tree::TerminalNode *Identifier();
+    Identifier_with_dimContext *identifier_with_dim();
 
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -263,7 +264,7 @@ public:
   public:
     ConstantDefaultContext(PrimaryExpressionContext *ctx);
 
-    ConstantContext *constant();
+    Constant_vectorContext *constant_vector();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -302,22 +303,6 @@ public:
 
   PrimaryExpressionContext* primaryExpression();
 
-  class  ConstantContext : public antlr4::ParserRuleContext {
-  public:
-    PlutoParser::Identifier_with_dimContext *name = nullptr;
-    ConstantContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *VAR();
-    Constant_vectorContext *constant_vector();
-    Identifier_with_dimContext *identifier_with_dim();
-
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  ConstantContext* constant();
-
   class  Identifier_with_dimContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *name = nullptr;
@@ -352,10 +337,15 @@ public:
 
   class  Constant_vectorContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *decimal_digitsToken = nullptr;
+    antlr4::Token *integer_valueToken = nullptr;
     std::vector<antlr4::Token *> vec;
+    antlr4::Token *decimal_digitsToken = nullptr;
+    antlr4::Token *_tset321 = nullptr;
+    antlr4::Token *_tset332 = nullptr;
     Constant_vectorContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    std::vector<antlr4::tree::TerminalNode *> INTEGER_VALUE();
+    antlr4::tree::TerminalNode* INTEGER_VALUE(size_t i);
     std::vector<antlr4::tree::TerminalNode *> DECIMAL_DIGITS();
     antlr4::tree::TerminalNode* DECIMAL_DIGITS(size_t i);
 
