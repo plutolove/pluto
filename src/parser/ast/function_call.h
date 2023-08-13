@@ -13,6 +13,7 @@ class FunctionCall : public AstNode {
                const std::vector<AstNodePtr>& args);
   FunctionCall(Location loc, const std::string& name,
                std::initializer_list<AstNodePtr> args);
+
   std::string_view getFunctionName() const { return name_; }
   const std::vector<AstNodePtr>& getArgs() const { return arguments_; }
 

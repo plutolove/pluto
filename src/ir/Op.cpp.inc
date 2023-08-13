@@ -142,6 +142,11 @@ void ConstantOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &od
     
 }
 
+void ConstantOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, double value) {
+      odsState.addAttribute("attr", odsBuilder.getF64FloatAttr(value));
+    
+}
+
 void ConstantOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Type resultType0, ::mlir::DenseElementsAttr value) {
   odsState.addAttribute(getValueAttrName(odsState.name), value);
   odsState.addTypes(resultType0);

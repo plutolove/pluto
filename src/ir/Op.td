@@ -46,7 +46,9 @@ def ConstantOp : PlutoOp<"constant", [NoSideEffect]> {
     }]>,
 
     // Build a constant with a given constant floating-point value.
-    OpBuilder<(ins "double":$value)>
+    OpBuilder<(ins "double":$value), [{
+      $_state.addAttribute("attr", $_builder.getF64FloatAttr(value));
+    }]>
   ];
 
   // Indicate that additional verification for this operation is necessary.

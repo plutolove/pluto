@@ -12,7 +12,6 @@ DemangleResult tryDemangle(const char* name) {
   int status = 0;
   return tryDemangle(name, status);
 }
-
 std::string demangle(const char* name, int& status) {
   auto result = tryDemangle(name, status);
   if (result) {
