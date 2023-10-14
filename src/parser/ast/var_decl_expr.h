@@ -23,7 +23,11 @@ class VarDeclExpr : public AstNode {
 
   VarType getVarType() const { return type_; }
 
-  AstNodePtr getVarExpr() const { return value_; }
+  AstNodePtr getVarExpr() { return value_; }
+
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::VarDecl;
+  }
 
  protected:
   std::string name_;

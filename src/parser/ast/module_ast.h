@@ -13,6 +13,10 @@ class ModuleAst : public AstNode {
 
   const std::vector<FunctionDefPtr>& getFunctions() const { return functions_; }
 
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::ModuleAst;
+  }
+
  protected:
   std::vector<FunctionDefPtr> functions_;
 };

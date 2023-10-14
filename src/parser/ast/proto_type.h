@@ -9,9 +9,13 @@ namespace pluto {
 class VariableExpr : public AstNode {
  public:
   VariableExpr(Location loc, const std::string& name)
-      : AstNode(AstNodeType::VariableExpr, loc) {}
+      : AstNode(AstNodeType::VariableExpr, loc), name_(name) {}
 
   const std::string& getVarName() const { return name_; }
+
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::VariableExpr;
+  }
 
  protected:
   std::string name_;
@@ -27,6 +31,10 @@ class ProtoType : public AstNode {
   const std::string& getProtoName() const { return name_; }
 
   const std::vector<VariableExprPtr>& getArgs() const { return args_; }
+
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::ProtoType;
+  }
 
  protected:
   std::string name_;

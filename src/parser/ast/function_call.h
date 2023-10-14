@@ -3,7 +3,9 @@
 #include <string_view>
 #include <vector>
 
+#include "fmt/format.h"
 #include "parser/ast/ast_node.h"
+
 namespace pluto {
 
 class FunctionCall : public AstNode {
@@ -16,6 +18,18 @@ class FunctionCall : public AstNode {
 
   std::string_view getFunctionName() const { return name_; }
   const std::vector<AstNodePtr>& getArgs() const { return arguments_; }
+
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::FunctionCall;
+  }
+
+  virtual std::string toString() const {
+    std::vector<std::string> args;
+    for (auto& arg : arguments_) {
+      args.push_back(arg->toString());
+    }
+    return fmt::format("name: {}, args: {}", name_, fmt::join(args, ", "));
+  }
 
  protected:
   std::string name_;

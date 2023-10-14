@@ -55,6 +55,14 @@ class BinaryOp : public AstNode {
   AstNodePtr getrhs() const { return right_; }
   BinaryOpType getOp() const { return opt_; }
 
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::BinaryOP;
+  }
+
+  virtual std::string toString() const {
+    return left_->toString() + " OP " + right_->toString();
+  }
+
  protected:
   AstNodePtr left_{nullptr};
   BinaryOpType opt_{BinaryOpType::Unknow};

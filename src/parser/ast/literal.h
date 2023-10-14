@@ -13,6 +13,10 @@ class LiteralDouble : public AstNode {
 
   double getValue() const { return value_; }
 
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::LiteralDouble;
+  }
+
  protected:
   double value_;
 };
@@ -28,6 +32,10 @@ class LiteralTensor : public AstNode {
   const std::vector<AstNodePtr>& getValues() const { return values_; }
 
   const std::vector<int32_t>& getDims() const { return dims_; }
+
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::LiteralTensor;
+  }
 
  protected:
   std::vector<AstNodePtr> values_;

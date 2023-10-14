@@ -12,6 +12,7 @@ using AstNodeRawPtr = AstNode*;
 struct Location {
   size_t line;  ///< line number.
   size_t col;   ///< column number.
+  std::string file{"data/test.toy"};
 };
 
 enum class AstNodeType : int32_t {
@@ -39,6 +40,7 @@ class AstNode {
   virtual ~AstNode() = default;
   virtual std::string toString() const { return "AstNde"; }
   AstNodeType getType() const { return ntype_; }
+  const Location& loc() const { return location_; }
 
  protected:
   AstNodeType ntype_;

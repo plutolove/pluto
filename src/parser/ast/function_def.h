@@ -15,6 +15,10 @@ class FunctionDef : public AstNode {
   ProtoTypePtr getProto() const { return proto_; }
   const std::vector<AstNodePtr>& getBody() const { return body_; }
 
+  static bool classof(const AstNode* c) {
+    return c->getType() == AstNodeType::FunctionDef;
+  }
+
  protected:
   ProtoTypePtr proto_;
   std::vector<AstNodePtr> body_;

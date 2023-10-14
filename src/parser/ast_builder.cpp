@@ -7,6 +7,8 @@
 #include <vector>
 
 #include "TokenFactory.h"
+#include "atn/ParserATNSimulator.h"
+#include "atn/PredictionMode.h"
 #include "common/exception.h"
 #include "common/log.h"
 #include "common/typeid_cast.h"
@@ -48,6 +50,8 @@ ModuleAstPtr ASTBuilder::parse(const std::string &str) {
   parser.removeErrorListeners();
   PlutoErrorListener listenerError;
   parser.addErrorListener(&listenerError);
+  parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(
+      antlr4::atn::PredictionMode::SLL);
   auto root = parser.function_list();
   if (not listenerError.m_strErrMsg.empty()) {
     ERROR("error msg: {}", listenerError.error_msg());
@@ -65,9 +69,12 @@ ModuleAstPtr ASTBuilder::parse_file(const std::string &path) {
   parser.removeErrorListeners();
   PlutoErrorListener listenerError;
   parser.addErrorListener(&listenerError);
+  // parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(antlr4::atn::PredictionMode::SLL);
   auto root = parser.function_list();
   if (not listenerError.m_strErrMsg.empty()) {
     ERROR("error msg: {}", listenerError.error_msg());
+  } else {
+    INFO("parse success");
   }
   return typeid_cast<ModuleAstPtr>(typeVisit(root));
 }
@@ -191,7 +198,9 @@ std::any ASTBuilder::visitConstantDefault(
 std::any ASTBuilder::visitFunctionCall(PlutoParser::FunctionCallContext *ctx) {
   std::vector<AstNodePtr> args;
   for (auto &item : ctx->argument) {
+    INFO("debug args: {}", item->getText());
     args.push_back(typeVisit(item));
+    INFO("debug arg node type: {}", int(args.back()->getType()));
   }
   AstNodePtr ret =
       std::make_shared<FunctionCall>(LOC(), ctx->functionName->getText(), args);
