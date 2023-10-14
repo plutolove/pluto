@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <string_view>
 
 namespace pluto {
 
@@ -12,7 +13,7 @@ using AstNodeRawPtr = AstNode*;
 struct Location {
   size_t line;  ///< line number.
   size_t col;   ///< column number.
-  std::string file{"data/test.toy"};
+  std::string_view file;
 };
 
 enum class AstNodeType : int32_t {

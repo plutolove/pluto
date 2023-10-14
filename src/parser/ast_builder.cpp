@@ -1,9 +1,11 @@
 #include "parser/ast_builder.h"
 
 #include <any>
+#include <exception>
 #include <fstream>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "TokenFactory.h"
@@ -27,12 +29,15 @@
 
 namespace pluto {
 
-static inline Location generateLoc(antlr4::Token *token) {
-  Location loc{.line = token->getLine(), .col = token->getCharPositionInLine()};
+static inline Location generateLoc(antlr4::Token *token,
+                                   std::string_view path) {
+  Location loc{.line = token->getLine(),
+               .col = token->getCharPositionInLine(),
+               .file = path};
   return loc;
 }
 
-#define LOC() (generateLoc(ctx->start))
+#define LOC() (generateLoc(ctx->start, path))
 
 #define AssertAst(ast_ptr, type)                                               \
   do {                                                                         \
@@ -69,12 +74,9 @@ ModuleAstPtr ASTBuilder::parse_file(const std::string &path) {
   parser.removeErrorListeners();
   PlutoErrorListener listenerError;
   parser.addErrorListener(&listenerError);
-  // parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(antlr4::atn::PredictionMode::SLL);
   auto root = parser.function_list();
   if (not listenerError.m_strErrMsg.empty()) {
     ERROR("error msg: {}", listenerError.error_msg());
-  } else {
-    INFO("parse success");
   }
   return typeid_cast<ModuleAstPtr>(typeVisit(root));
 }
@@ -123,8 +125,8 @@ std::any ASTBuilder::visitFunc_dec(PlutoParser::Func_decContext *ctx) {
   auto func_name = ctx->func_name->getText();
   std::vector<VariableExprPtr> vars;
   for (auto &param : ctx->parameters()->argument) {
-    vars.push_back(
-        std::make_shared<VariableExpr>(generateLoc(param), param->getText()));
+    vars.push_back(std::make_shared<VariableExpr>(generateLoc(param, path),
+                                                  param->getText()));
   }
   AstNodePtr ret = std::make_shared<ProtoType>(LOC(), func_name, vars);
   return ret;
@@ -222,7 +224,7 @@ std::any ASTBuilder::visitConstant_vector(
   std::vector<AstNodePtr> values;
   for (auto &item : ctx->vec) {
     values.push_back(std::make_shared<LiteralDouble>(
-        generateLoc(item), std::stod(item->getText())));
+        generateLoc(item, path), std::stod(item->getText())));
   }
   AstNodePtr ret = std::make_shared<LiteralTensor>(LOC(), values, dims);
   return ret;

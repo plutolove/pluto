@@ -1,4 +1,6 @@
 #pragma once
+#include <string_view>
+
 #include "parser/PlutoBaseVisitor.h"
 #include "parser/ast/ast_node.h"
 #include "parser/ast/module_ast.h"
@@ -7,6 +9,8 @@ namespace pluto {
 
 class ASTBuilder : public pluto::PlutoBaseVisitor {
  public:
+  ASTBuilder(const std::string &path) : path(path) {}
+
   ASTBuilder() = default;
   ModuleAstPtr parse(const std::string &str);
   ModuleAstPtr parse_file(const std::string &path);
@@ -54,6 +58,8 @@ class ASTBuilder : public pluto::PlutoBaseVisitor {
 
   virtual std::any visitConstant_vector(
       PlutoParser::Constant_vectorContext *ctx) override;
+
+  std::string_view path;
 };
 
 }  // namespace pluto

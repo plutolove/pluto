@@ -28,10 +28,10 @@ ABSL_FLAG(std::string, emit, "", "transform ast/mlir");
 int main(int argc, char** argvs) {
   absl::ParseCommandLine(argc, argvs);
   auto path = absl::GetFlag(FLAGS_input);
-  INFO("input: {}", path);
   auto emit = absl::GetFlag(FLAGS_emit);
+  INFO("input: {}, emit: {}", path, emit);
   auto& jit = pluto::SQLJit::getInstance();
-  pluto::ASTBuilder builder;
+  pluto::ASTBuilder builder(path);
   auto module_ast = builder.parse_file(path);
   if ("ast" == emit) {
     pluto::transformAst(module_ast);
