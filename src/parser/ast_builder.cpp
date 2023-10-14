@@ -198,9 +198,7 @@ std::any ASTBuilder::visitConstantDefault(
 std::any ASTBuilder::visitFunctionCall(PlutoParser::FunctionCallContext *ctx) {
   std::vector<AstNodePtr> args;
   for (auto &item : ctx->argument) {
-    INFO("debug args: {}", item->getText());
     args.push_back(typeVisit(item));
-    INFO("debug arg node type: {}", int(args.back()->getType()));
   }
   AstNodePtr ret =
       std::make_shared<FunctionCall>(LOC(), ctx->functionName->getText(), args);

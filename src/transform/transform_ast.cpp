@@ -38,7 +38,6 @@ void TransformAst::visit(const AstNodePtr &expr) {
 
 void TransformAst::visit(VariableExpr *node) {
   INDENT();
-  INFO("TransformAst::visit(VariableExpr *node) name : {}", node->getVarName());
   llvm::errs() << "var: " << node->getVarName() << " " << loc(node) << "\n";
 }
 void TransformAst::visit(ModuleAstPtr &module) {
