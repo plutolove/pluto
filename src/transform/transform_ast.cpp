@@ -1,6 +1,7 @@
 #include "transform/transform_ast.h"
 
 #include "common/log.h"
+#include "common/macro.h"
 #include "llvm/ADT/Twine.h"
 #include "llvm/ADT/TypeSwitch.h"
 
@@ -20,8 +21,9 @@ static std::string loc(T *node) {
       .str();
 }
 
-#define INDENT()            \
-  Indent level_(curIndent); \
+#define tmp_var VAR_DEFINE(indent_var, __COUNTER__)
+#define INDENT()             \
+  Indent tmp_var(curIndent); \
   indent();
 
 void TransformAst::visit(const AstNodePtr &expr) {
@@ -30,7 +32,6 @@ void TransformAst::visit(const AstNodePtr &expr) {
             VarDeclExpr, FunctionDef, ProtoType, VariableExpr>(
           [&](auto *node) { this->visit(node); })
       .Default([&](AstNode *node) {
-        // No match, fallback to a generic message
         INDENT();
         INFO("<unknown Expr, kind, {}>", int(node->getType()));
       });
@@ -49,17 +50,13 @@ void TransformAst::visit(FunctionDef *node) {
   INDENT();
   llvm::errs() << "Function \n";
   visit(node->getProto().get());
-  {
-    INDENT();
-    llvm::errs() << "Block {\n";
-    for (auto &ptr : node->getBody()) {
-      visit(ptr);
-    }
-    {
-      INDENT();
-      llvm::errs() << "} // block\n";
-    }
+  INDENT();
+  llvm::errs() << "Block {\n";
+  for (auto &ptr : node->getBody()) {
+    visit(ptr);
   }
+  INDENT();
+  llvm::errs() << "} // block\n";
 }
 
 void TransformAst::visit(ProtoType *node) {
@@ -97,19 +94,16 @@ void TransformAst::visit(VarDeclExpr *varDecl) {
 }
 
 void printLitHelper(AstNode *litOrNum) {
-  // Inside a literal expression we can have either a number or another literal
   if (auto *num = llvm::dyn_cast<LiteralDouble>(litOrNum)) {
     llvm::errs() << num->getValue();
     return;
   }
   auto *literal = llvm::cast<LiteralTensor>(litOrNum);
 
-  // Print the dimension for this literal first
   llvm::errs() << "<";
   llvm::interleaveComma(literal->getDims(), llvm::errs());
   llvm::errs() << ">";
 
-  // Now print the content, recursing on every element of the list
   llvm::errs() << "[ ";
   llvm::interleaveComma(literal->getValues(), llvm::errs(),
                         [&](auto &elt) { printLitHelper(elt.get()); });
@@ -134,10 +128,8 @@ void TransformAst::visit(ReturnExpr *node) {
     visit(node->getExpr());
     return;
   }
-  {
-    INDENT();
-    llvm::errs() << "(void)\n";
-  }
+  INDENT();
+  llvm::errs() << "(void)\n";
 }
 
 void TransformAst::visit(BinaryOp *node) {
