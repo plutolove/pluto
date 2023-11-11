@@ -10,14 +10,14 @@ class Exception : public std::exception {
  public:
   template <typename... Args>
   Exception(int code, const std::string& fmt, Args&&... args)
-      : Exception(fmt::format(fmt, std::forward<Args>(args)...), code) {}
+      : Exception(fmt::format(fmt::runtime(fmt), std::forward<Args>(args)...), code) {}
 
   template <typename... Args>
   Exception(const std::string& file, const std::string& function, int64_t line,
             int code, const std::string& fmt, Args&&... args)
       : _code(code),
         _msg(fmt::format("{}, file: {}, function: {}, line: {}", file, function,
-                         line, fmt::format(fmt, std::forward<Args>(args)...))) {
+                         line, fmt::format(fmt::runtime(fmt), std::forward<Args>(args)...))) {
   }
 
   Exception(const std::string& msg, int code) : _code(code), _msg(msg) {}
