@@ -14,4 +14,4 @@ jobs:
     - name: Install xmake
       run: bash <(curl -fsSL https://xmake.io/shget.text)
     - name: Build
-      run: echo 'y' | xmake
+      run: echo 'y' | xmake -v
