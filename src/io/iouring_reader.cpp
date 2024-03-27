@@ -22,6 +22,7 @@ std::string errnoToString(int the_errno) {
 IOUringReader::IOUringReader(uint32_t entries) {
   struct io_uring_probe* probe = io_uring_get_probe();
   if (!probe) {
+    ThrowException(-1, "io_uring_get_probe failed");
     return;
   }
 
