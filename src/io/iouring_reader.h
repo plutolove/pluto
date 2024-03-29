@@ -13,7 +13,7 @@ class IOUringReader : public AsynchronousReader {
   std::mutex mtx_;
   struct io_uring ring;
   uint32_t cq_entries;
-  std::atomic<bool> cancelled;
+  std::atomic<bool> cancelled{false};
   std::unique_ptr<folly::CPUThreadPoolExecutor> ring_completion_monitor;
 
   struct EnqueuedRequest {

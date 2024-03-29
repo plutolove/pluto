@@ -79,9 +79,8 @@ int main(int argc, char** argvs) {
   // std::this_thread::sleep_for(std::chrono::seconds(1));
 
   // scheduler.shutdown();
-  auto fd =
-      ::open("/data01/home/mengshangqi.123/workspace/ClickHouse/CMakeLists.txt",
-             O_RDONLY | O_LARGEFILE);
+  auto fd = ::open("/home/meng/workspace/compiler/src/io/asynchronous_reader.h",
+                   O_RDONLY | O_LARGEFILE);
   pluto::AsynchronousReader::FileDescriptorPtr file_dpr =
       std::make_shared<pluto::AsynchronousReader::LocalFileDescriptor>(fd);
   pluto::IOUringReader reader(128);
@@ -109,7 +108,6 @@ int main(int argc, char** argvs) {
     // });
   }
   pool->join();
-  LOG_INFO("-----------------------------");
   for (auto& f : res) {
     std::move(f).then([](folly::Try<pluto::IOUringReader::Result> val) {
       LOG_INFO("ptr: {}, str: {}", fmt::ptr(val->buf),
