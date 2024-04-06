@@ -7,7 +7,7 @@
 namespace pluto {
 
 struct VarType {
-  std::vector<int32_t> dims;
+  std::vector<int64_t> shape;
 };
 
 class VarDeclExpr : public AstNode {

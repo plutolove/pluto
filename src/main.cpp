@@ -15,6 +15,7 @@
 #include "common/log.h"
 #include "common/typeid_cast.h"
 #include "fmt/format.h"
+#include "ir/mlir_gen.h"
 #include "jit/jit.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
@@ -35,6 +36,14 @@ int main(int argc, char** argvs) {
   auto module_ast = builder.parse_file(path);
   if ("ast" == emit) {
     pluto::transformAst(module_ast);
+  } else if ("mlir" == emit) {
+    mlir::MLIRContext context;
+    // Load our Dialect in this MLIR Context.
+    context.getOrLoadDialect<mlir::pluto::PlutoDialect>();
+    mlir::OwningOpRef<mlir::ModuleOp> module = mlirGen(context, *module_ast);
+    if (!module) return 1;
+
+    module->dump();
   }
   return 0;
 }

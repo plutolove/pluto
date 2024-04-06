@@ -24,14 +24,14 @@ class LiteralDouble : public AstNode {
 class LiteralTensor : public AstNode {
  public:
   LiteralTensor(Location loc, const std::vector<AstNodePtr>& values,
-                const std::vector<int32_t>& dims)
+                const std::vector<int64_t>& dims)
       : AstNode(AstNodeType::LiteralTensor, loc),
         values_(values),
         dims_(dims) {}
 
   const std::vector<AstNodePtr>& getValues() const { return values_; }
 
-  const std::vector<int32_t>& getDims() const { return dims_; }
+  const std::vector<int64_t>& getDims() const { return dims_; }
 
   static bool classof(const AstNode* c) {
     return c->getType() == AstNodeType::LiteralTensor;
@@ -39,6 +39,6 @@ class LiteralTensor : public AstNode {
 
  protected:
   std::vector<AstNodePtr> values_;
-  std::vector<int32_t> dims_;
+  std::vector<int64_t> dims_;
 };
 }  // namespace pluto

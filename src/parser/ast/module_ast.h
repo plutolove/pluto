@@ -17,6 +17,9 @@ class ModuleAst : public AstNode {
     return c->getType() == AstNodeType::ModuleAst;
   }
 
+  auto begin() { return functions_.begin(); }
+  auto end() { return functions_.end(); }
+
  protected:
   std::vector<FunctionDefPtr> functions_;
 };

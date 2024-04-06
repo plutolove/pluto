@@ -155,8 +155,8 @@ std::any ASTBuilder::visitConstant_var_decl(
     PlutoParser::Constant_var_declContext *ctx) {
   auto expr = typeVisit(ctx->expression());
   VarType type;
-  type.dims.push_back(std::stoi(ctx->dim->dim_x->getText()));
-  type.dims.push_back(std::stoi(ctx->dim->dim_y->getText()));
+  type.shape.push_back(std::stoi(ctx->dim->dim_x->getText()));
+  type.shape.push_back(std::stoi(ctx->dim->dim_y->getText()));
   AstNodePtr ret =
       std::make_shared<VarDeclExpr>(LOC(), ctx->name->getText(), type, expr);
   return ret;
@@ -220,12 +220,13 @@ std::any ASTBuilder::visitParenthesizedExpression(
 
 std::any ASTBuilder::visitConstant_vector(
     PlutoParser::Constant_vectorContext *ctx) {
-  std::vector<int32_t> dims;
+  std::vector<int64_t> dims;
   std::vector<AstNodePtr> values;
   for (auto &item : ctx->vec) {
     values.push_back(std::make_shared<LiteralDouble>(
         generateLoc(item, path), std::stod(item->getText())));
   }
+  dims.push_back(values.size());
   AstNodePtr ret = std::make_shared<LiteralTensor>(LOC(), values, dims);
   return ret;
 }

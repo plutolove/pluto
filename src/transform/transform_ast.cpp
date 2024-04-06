@@ -81,7 +81,7 @@ void TransformAst::visit(FunctionCall *node) {
 
 void TransformAst::dump(const VarType &type) {
   llvm::errs() << "<";
-  llvm::interleaveComma(type.dims, llvm::errs());
+  llvm::interleaveComma(type.shape, llvm::errs());
   llvm::errs() << ">";
 }
 
