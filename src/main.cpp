@@ -37,13 +37,7 @@ int main(int argc, char** argvs) {
   if ("ast" == emit) {
     pluto::transformAst(module_ast);
   } else if ("mlir" == emit) {
-    mlir::MLIRContext context;
-    // Load our Dialect in this MLIR Context.
-    context.getOrLoadDialect<mlir::pluto::PlutoDialect>();
-    mlir::OwningOpRef<mlir::ModuleOp> module = mlirGen(context, *module_ast);
-    if (!module) return 1;
-
-    module->dump();
+    DumpIR(module_ast);
   }
   return 0;
 }
